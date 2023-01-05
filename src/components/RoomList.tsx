@@ -11,14 +11,32 @@ import {
 } from "@chakra-ui/react";
 import { FaRegHeart, FaStar } from "react-icons/fa";
 
-export default function RoomList() {
+interface IRoomProps {
+  //imageUrl: string;
+  name: string;
+  rating: number;
+  city: string;
+  country: string;
+  price: number;
+}
+
+export default function RoomList({
+  //imageUrl,
+  name,
+  rating,
+  city,
+  country,
+  price,
+}: IRoomProps) {
   const gray = useColorModeValue("gray.600", "gray.300");
   return (
     <VStack alignItems={"flex-start"}>
       <Box position={"relative"} overflow={"hidden"} mb={3} rounded={"3xl"}>
         <Image
           minH={"280"}
-          src="https://a0.muscache.com/im/pictures/7254d632-1cfd-49cf-bdf1-c6b194b0f07e.jpg?im_w=720"
+          src={
+            "https://a0.muscache.com/im/pictures/prohost-api/Hosting-553863823287705078/original/f2369864-c9eb-4222-a73a-018e55254aed.jpeg?im_w=720"
+          }
         />
         <Button
           variant={"unstyled"}
@@ -34,7 +52,7 @@ export default function RoomList() {
       <Box>
         <Grid gap={2} templateColumns={"6fr 1fr"}>
           <Text as={"b"} noOfLines={1} fontSize={"md"}>
-            sadfas asdf sadf asdfasdfasdfsad
+            {name}
           </Text>
           <HStack
             _hover={{ color: "red.100" }}
@@ -42,15 +60,15 @@ export default function RoomList() {
             alignItems={"center"}
           >
             <FaStar size={"12"} />
-            <Text fontSize={"sm"}>5.0</Text>
+            <Text fontSize={"sm"}>{rating}</Text>
           </HStack>
         </Grid>
         <Text fontSize={"sm"} color={gray}>
-          서울 대한민국
+          {city},{country}
         </Text>
       </Box>
       <Text fontSize={"sm"} color={gray}>
-        <Text as={"b"}>$49</Text> / night
+        <Text as={"b"}>${price}</Text> / night
       </Text>
     </VStack>
   );
